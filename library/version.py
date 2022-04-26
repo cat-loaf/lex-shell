@@ -1,9 +1,11 @@
 def getVersion():
+    createVersionFileCheck()
     f = open("library\\version", "r")
     ver = int(f.readline())
-    return (f"Version: {ver}")
-
+    f.close()
+    return f"Version: {str(ver)}"
 def updateVersion():
+    createVersionFileCheck()
     f = open("library\\version", "r")
     version = int(f.readline())
     version += 1
@@ -13,8 +15,17 @@ def updateVersion():
 
 def setVersion(ver: int):
     try:
+        createVersionFileCheck()
         int(ver)
         f = open("library\\version", "w").write(str(ver))
     except ValueError:
         print("Please provide an integer")
-    
+        
+def createVersionFileCheck():
+    f = open("library\\version", "r+")
+    f.readline()
+    if f == "":
+        b = open("library\\version", "w")
+        b.write("0")
+        b.close()
+    f.close()
