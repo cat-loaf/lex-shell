@@ -1,6 +1,6 @@
 from library import clean
 def askExit(c):
-    match input("• Are you sure you want to exit? (Y\\N)\n\t• ").lower():
+    match input("\n• Are you sure you want to exit? (Y\\N)\n\t• ").lower():
         case "y":
             return False
         case "n":
