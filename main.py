@@ -1,11 +1,7 @@
-from typing import Any
 from win10toast import ToastNotifier
-
-from library import clean, exit, restart, version, newList, toast, timeConvert
+from library import clean, exit, restart, version, newList, toast, timeConvert, helper
 from platform import system
-import os, time
-
-bull = ""
+import time
 
 def main():
     version.updateVersion()
@@ -22,18 +18,18 @@ def main():
             match statement[0]:
                 case "quit" | "exit" | "exit()" | "quit()":
                     try:
-                        run = exit.askExit(clearCommand, statement[1])
+                        run = exit.askExit(clearCommand, statement[1:])
                     except IndexError:
                        run = exit.askExit(clearCommand)
                         
                 case "clear" | "cls" | "clean":
                     clean.clean(clearCommand)
                 
-                case "restart":
+                case "restart" | "re":
                     print(f"Restarting...")
                     time.sleep(0.25)
-                    
                     restart.restart()
+                    
                 case "version" | "ver":
                     try:
                         if statement[1] is not None:
@@ -47,9 +43,16 @@ def main():
                         toast.start(int(statement[1]), statement[2:])
                     except (ValueError, IndexError):
                         print(f"• Usage: \n\t• toast <seconds> <message>")
-                        
+                case "help" | "?":
+                    try:
+                        print(helper.commandHelp(statement[1]))
+                    except:
+                        print(helper.commandHelp())
+                case "commands" | "cmd" | "commandlist" | "cmds":
+                    print(helper.displayCommands(25))
+                
                 case default:
-                    if len(listState) != 1: # create a class that extends list, with custom repr
+                    if len(listState) != 1:
                         print(newList.returnNewList(listState)+" is not a valid command.\n\t")
                     else:
                         print("'"+listState[0] + "' is not a valid command.\n")
