@@ -1,2 +1,3 @@
 # lex-shell
- None
+Cool little utilities for working
+- create windows toast notifications 
