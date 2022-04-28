@@ -48,8 +48,8 @@ def main():
                         print(helper.commandHelp(statement[1]))
                     except:
                         print(helper.commandHelp())
-                case "commands" | "cmd" | "commandlist" | "cmds":
-                    print(helper.displayCommands(25))
+                case "commands" | "cmd" | "cmdlist" | "cmds" | "list":
+                    helper.displayCommands(25)
                 
                 case default:
                     if len(listState) != 1:

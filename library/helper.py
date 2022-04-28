@@ -45,6 +45,13 @@ definitions = {
             "• Append command names to get information about that command."
         ],
         "usage": "help '<command>'"
+    },
+    "list": {
+        "alias": ["cmdlist", "commands", "cmd", "cmds", "list"],
+        "description": [
+            "This ouputs all help messages."
+        ],
+        "usage": "list"
     }
 }
 
@@ -68,8 +75,10 @@ def commandHelp(commandName="help"):
         g += f"\t{line}\n"
     g += "\nUsage: "+h["usage"]+"\n"
     return g
+
 def displayCommands(colNum=20):
-    g=""
     for key in definitions.keys():
-        g += commandHelp(key)+"-"*colNum+"\n"
-    return g
+        print(commandHelp(key)+"-"*colNum+"\n")
+        cont = input("Press Enter to continue, or input 'e' to stop output. ")
+        if cont != "":
+            break

@@ -1,3 +1,4 @@
+import os
 def getVersion():
     createVersionFileCheck()
     f = open("library\\version", "r")
@@ -22,10 +23,13 @@ def setVersion(ver: int):
         print("Please provide an integer")
         
 def createVersionFileCheck():
-    f = open("library\\version", "r+")
-    f.readline()
-    if f == "":
-        b = open("library\\version", "w")
-        b.write("0")
-        b.close()
-    f.close()
+    try:
+        f = open("library\\version", "r+")
+        f.readline()
+        if f == "":
+            b = open("library\\version", "w")
+            b.write("0")
+            b.close()
+        f.close()
+    except FileNotFoundError:
+        os.system("echo 0 > library\\version")
