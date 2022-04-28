@@ -36,7 +36,7 @@ definitions = {
         "description": [
             "Make a routine for notifying user after a certain amount of time."
         ],
-        "usage": "toast <time(seconds)> <message>"
+        "usage": "toast <time(seconds) | <hour>H<minute>M<second>S> <message>"
     },
     "help": {
         "alias": ["help", "?"],

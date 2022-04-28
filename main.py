@@ -41,8 +41,20 @@ def main():
                 case "toast" | "nty" | "notify":
                     try:
                         toast.start(int(statement[1]), statement[2:])
-                    except (ValueError, IndexError):
-                        print(f"• Usage: \n\t• toast <seconds> <message>")
+                    except ValueError:
+                        x = statement[1]
+                        
+                        try:
+                            hour = int(x.split("h")[0])
+                            minute = int(x.split("m")[0].split("h")[1])
+                            second = int(x.split("m")[1].rstrip("s"))
+                        
+                            x = timeConvert.convert(hour,minute,second) 
+                            toast.start(x, statement[2:])
+                        except ValueError:
+                            print("Error in toast\n"+helper.commandHelp("toast"))
+                    except IndexError:
+                        print("Error in toast\n"+helper.commandHelp("toast"))
                 case "help" | "?":
                     try:
                         print(helper.commandHelp(statement[1]))
